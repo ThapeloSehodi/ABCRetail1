@@ -1,0 +1,62 @@
+﻿@model ABCRetail.Models.Customer
+
+@{
+    ViewData["Title"] = "Customer Details";
+}
+
+<div class="container mt-4">
+
+    <h1>Customer Details</h1>
+
+    <hr />
+
+    <dl class="row">
+
+        <dt class="col-sm-3">
+            Customer ID
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.CustomerId
+        </dd>
+
+        <dt class="col-sm-3">
+            Full Name
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.FullName
+        </dd>
+
+        <dt class="col-sm-3">
+            Email
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Email
+        </dd>
+
+        <dt class="col-sm-3">
+            Phone Number
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.PhoneNumber
+        </dd>
+
+        <dt class="col-sm-3">
+            Address
+        </dt>
+
+        <dd class="col-sm-9">
+            @Model.Address
+        </dd>
+
+    </dl>
+
+    <a asp-action="Index"
+           class="btn btn-secondary">
+        Back to Customers
+    </a>
+
+</div>

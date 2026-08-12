@@ -1,0 +1,79 @@
+﻿@using System.Text.Json
+@model IEnumerable<Azure.Storage.Queues.Models.PeekedMessage>
+
+@{
+    ViewData["Title"] = "Order Processing Queue";
+}
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <div>
+            <h1>Order Processing Queue</h1>
+
+            <p class="text-muted">
+                Messages currently stored in Azure Queue Storage.
+            </p>
+        </div>
+
+        <div>
+            <a asp-action="Create"
+                   class="btn btn-primary">
+                Create Order
+            </a>
+
+            <a asp-action="Inventory"
+                   class="btn btn-success">
+                Inventory Update
+            </a>
+        </div>
+
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-info">
+            There are currently no messages in the
+            order-processing queue.
+        </div>
+    }
+    else
+    {
+        <table class="table table-striped table-bordered">
+
+            <thead>
+                <tr>
+                    <th>Message ID</th>
+                    <th>Order Information</th>
+                    <th>Insertion Time</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                @foreach (var message in Model)
+                {
+                    <tr>
+
+                        <td>
+                            @message.MessageId
+                        </td>
+
+                        <td>
+                            <pre style="white-space:pre-wrap;">@message.MessageText</pre>
+                        </td>
+
+                        <td>
+                            @message.InsertedOn
+                        </td>
+
+                    </tr>
+                }
+
+            </tbody>
+
+        </table>
+    }
+
+</div>

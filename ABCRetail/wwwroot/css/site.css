@@ -1,0 +1,301 @@
+/* =========================================
+   ABC RETAIL - MAIN WEBSITE STYLING
+   ========================================= */
+
+
+/* =========================================
+   PAGE LAYOUT
+   Keeps footer at the bottom of the page
+   ========================================= */
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    background-color: #ffffff;
+    color: #212529;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================================
+   MAIN CONTENT
+   ========================================= */
+
+main {
+    flex: 1;
+}
+
+.container {
+    max-width: 1140px;
+}
+
+
+/* =========================================
+   BLUE NAVBAR / HEADER
+   ========================================= */
+
+.abc-navbar {
+    background-color: #0d6efd;
+    min-height: 56px;
+}
+
+    .abc-navbar .navbar-brand {
+        color: #ffffff !important;
+        font-weight: bold;
+        font-size: 20px;
+    }
+
+    .abc-navbar .nav-link {
+        color: #ffffff !important;
+        margin-left: 5px;
+    }
+
+        .abc-navbar .nav-link:hover {
+            color: #dbeafe !important;
+        }
+
+
+    /* Navbar button for mobile */
+
+    .abc-navbar .navbar-toggler {
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+    .abc-navbar .navbar-toggler-icon {
+        filter: brightness(0) invert(1);
+    }
+
+
+/* =========================================
+   HEADINGS
+   ========================================= */
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-weight: 600;
+}
+
+h3 {
+    font-weight: 600;
+}
+
+
+/* =========================================
+   BUTTONS
+   ========================================= */
+
+.btn-primary {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+    .btn-primary:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+
+/* Create buttons */
+
+.btn-success {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+    .btn-success:hover {
+        background-color: #0b5ed7;
+        border-color: #0a58ca;
+    }
+
+
+/* Edit buttons */
+
+.btn-warning {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #000000;
+}
+
+
+/* Delete buttons */
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+
+/* Secondary buttons */
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+
+/* =========================================
+   FORMS
+   ========================================= */
+
+.form-control {
+    border-radius: 6px;
+}
+
+    .form-control:focus {
+        border-color: #0d6efd;
+        box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+    }
+
+.form-label {
+    font-weight: 600;
+}
+
+
+/* =========================================
+   TABLES
+   ========================================= */
+
+.table {
+    background-color: #ffffff;
+}
+
+    .table thead {
+        background-color: #0d6efd;
+        color: #ffffff;
+    }
+
+        .table thead th {
+            border-color: #0d6efd;
+            padding: 12px;
+        }
+
+    .table tbody td {
+        vertical-align: middle;
+    }
+
+.table-hover tbody tr:hover {
+    background-color: #f2f7ff;
+}
+
+
+/* =========================================
+   CARDS
+   ========================================= */
+
+.card {
+    border-radius: 8px;
+}
+
+.card-header {
+    background-color: #0d6efd;
+    color: #ffffff;
+}
+
+
+/* =========================================
+   LINKS
+   ========================================= */
+
+a {
+    color: #0d6efd;
+}
+
+    a:hover {
+        color: #0a58ca;
+    }
+
+
+/* =========================================
+   BLUE FOOTER
+   Small and always at the bottom
+   ========================================= */
+
+.site-footer {
+    background-color: #0d6efd;
+    color: #ffffff;
+    margin-top: auto;
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+}
+
+.footer-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+    .footer-content span {
+        font-size: 14px;
+    }
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+    .footer-links a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 14px;
+    }
+
+        .footer-links a:hover {
+            color: #dbeafe;
+            text-decoration: underline;
+        }
+
+
+/* =========================================
+   VALIDATION
+   ========================================= */
+
+.field-validation-error {
+    color: #dc3545;
+}
+
+.input-validation-error {
+    border-color: #dc3545;
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+   ========================================= */
+
+@media (max-width: 768px) {
+
+    .footer-content {
+        flex-direction: column;
+        justify-content: center;
+        gap: 8px;
+        padding: 10px 0;
+        text-align: center;
+    }
+
+    .footer-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .site-footer {
+        min-height: auto;
+    }
+
+    .abc-navbar .nav-link {
+        margin-left: 0;
+    }
+}

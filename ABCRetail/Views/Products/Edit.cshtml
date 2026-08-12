@@ -1,0 +1,180 @@
+﻿@model ABCRetail.Models.Product
+
+@{
+    ViewData["Title"] = "Edit Product";
+}
+
+<div class="container mt-4">
+
+    <h1>Edit Product</h1>
+
+    <p class="text-muted">
+        Update the product information below.
+    </p>
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <form asp-action="Edit"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger">
+                </div>
+
+                <!-- Keep Azure Table keys -->
+                <input type="hidden" asp-for="RowKey" />
+                <input type="hidden" asp-for="PartitionKey" />
+
+                <!-- Keep the existing image name -->
+                <input type="hidden" asp-for="ImageName" />
+
+
+                <div class="mb-3">
+
+                    <label asp-for="ProductId"
+                           class="form-label">
+                        Product ID
+                    </label>
+
+                    <input asp-for="ProductId"
+                           class="form-control" />
+
+                    <span asp-validation-for="ProductId"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label asp-for="ProductName"
+                           class="form-label">
+                        Product Name
+                    </label>
+
+                    <input asp-for="ProductName"
+                           class="form-control" />
+
+                    <span asp-validation-for="ProductName"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label asp-for="Description"
+                           class="form-label">
+                        Description
+                    </label>
+
+                    <textarea asp-for="Description"
+                              class="form-control"
+                              rows="4"></textarea>
+
+                    <span asp-validation-for="Description"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label asp-for="Price"
+                           class="form-label">
+                        Price
+                    </label>
+
+                    <input asp-for="Price"
+                           type="number"
+                           step="0.01"
+                           class="form-control" />
+
+                    <span asp-validation-for="Price"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label asp-for="StockQuantity"
+                           class="form-label">
+                        Stock Quantity
+                    </label>
+
+                    <input asp-for="StockQuantity"
+                           type="number"
+                           min="0"
+                           class="form-control" />
+
+                    <span asp-validation-for="StockQuantity"
+                          class="text-danger">
+                    </span>
+
+                </div>
+
+
+                @if (!string.IsNullOrEmpty(Model.ImageName))
+                {
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Current Image
+                        </label>
+
+                        <p>
+                            @Model.ImageName
+                        </p>
+
+                    </div>
+                }
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Change Product Image
+                    </label>
+
+                    <input type="file"
+                           name="imageFile"
+                           accept="image/*"
+                           class="form-control" />
+
+                    <small class="text-muted">
+                        Leave this empty if you want to keep the current image.
+                    </small>
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Save Changes
+                </button>
+
+                <a asp-action="Index"
+                       class="btn btn-secondary">
+                    Cancel
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

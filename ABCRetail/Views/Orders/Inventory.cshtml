@@ -1,0 +1,90 @@
+﻿@model ABCRetail.Models.InventoryMessage
+
+@{
+    ViewData["Title"] = "Inventory Management";
+}
+
+<div class="container mt-4">
+
+    <h1>Inventory Management</h1>
+
+    <p class="text-muted">
+        Send inventory updates to Azure Queue Storage.
+    </p>
+
+    <hr />
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            <form asp-action="Inventory" method="post">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="text-danger">
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="ProductId"
+                           class="form-label">
+                        Product ID
+                    </label>
+
+                    <input asp-for="ProductId"
+                           class="form-control"
+                           placeholder="P001" />
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="ProductName"
+                           class="form-label">
+                        Product Name
+                    </label>
+
+                    <input asp-for="ProductName"
+                           class="form-control"
+                           placeholder="Laptop" />
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label asp-for="Quantity"
+                           class="form-label">
+                        Quantity
+                    </label>
+
+                    <input asp-for="Quantity"
+                           type="number"
+                           min="1"
+                           class="form-control" />
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-success">
+                    Send Inventory Update
+                </button>
+
+                <a asp-action="Index"
+                       class="btn btn-secondary">
+                    Back to Queue
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync(
+            "_ValidationScriptsPartial");
+    }
+}
