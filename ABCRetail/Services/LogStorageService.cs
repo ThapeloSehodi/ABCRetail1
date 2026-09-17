@@ -125,32 +125,35 @@ namespace ABCRetail.Services
 
             return memoryStream;
         }
+        // C#
         public async Task UploadPdfAsync(IFormFile file)
         {
-            var shareClient = new ShareClient(
-                _connectionString,
-                _shareName);
-
+            var shareClient = new ShareClient(_connectionString, _shareName);
             await shareClient.CreateIfNotExistsAsync();
 
-            var directoryClient =
-                shareClient.GetDirectoryClient("documents");
-
+            var directoryClient = shareClient.GetDirectoryClient("documents");
             await directoryClient.CreateIfNotExistsAsync();
 
-            var fileName =
-                Path.GetFileName(file.FileName);
+            var fileName = Path.GetFileName(file.FileName);
+            var fileClient = directoryClient.GetFileClient(fileName);
 
-            var fileClient =
-                directoryClient.GetFileClient(fileName);
+            long fileLength = file.Length;
+            await fileClient.CreateAsync(fileLength);
 
-            await fileClient.CreateAsync(file.Length);
+            const int MaxRangeSize = 4 * 1024 * 1024; // 4,194,304 bytes
+            byte[] buffer = new byte[MaxRangeSize];
 
-            using var stream = file.OpenReadStream();
-
-            await fileClient.UploadRangeAsync(
-                new Azure.HttpRange(0, file.Length),
-                stream);
+            using (var stream = file.OpenReadStream())
+            {
+                long offset = 0;
+                int bytesRead;
+                while ((bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length)) > 0)
+                {
+                    using var ms = new MemoryStream(buffer, 0, bytesRead, writable: false);
+                    await fileClient.UploadRangeAsync(new Azure.HttpRange(offset, bytesRead), ms);
+                    offset += bytesRead;
+                }
+            }
         }
         public async Task<List<string>> GetPdfFilesAsync()
         {
